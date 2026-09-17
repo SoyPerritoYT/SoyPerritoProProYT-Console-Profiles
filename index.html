@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>👤 Profiles - SoyPerritoProProYT</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080808;color:#fff;font-family:Arial,sans-serif;text-align:center;padding:25px}.box{max-width:600px;margin:40px auto;background:#181818;border:1px solid #444;border-radius:22px;padding:30px}input{display:block;width:100%;padding:15px;margin:12px 0;border:1px solid #555;border-radius:12px;background:#101010;color:#fff;font-size:18px}button{padding:15px 22px;margin:8px;border:0;border-radius:13px;font-size:18px;font-weight:bold;cursor:pointer}.primary{background:#20d866;color:#fff}.back{background:#333;color:#fff}.profile{display:none}.error{color:#ff7777;min-height:25px}.avatar{font-size:75px}.name{font-size:30px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>👤 Profiles</h1>
+<div id="login">
+<p>🎮 Crea tu perfil de SoyPerritoProProYT-Console</p>
+<input id="nombre" type="text" placeholder="👤 Nombre" maxlength="20">
+<input id="contrasena" type="password" placeholder="🔒 Contraseña" maxlength="50">
+<p class="error" id="error"></p>
+<button class="primary" id="crear">✅ CREAR PERFIL</button>
+</div>
+<div class="profile" id="perfil">
+<div class="avatar">🐶</div>
+<div class="name" id="nombrePerfil"></div>
+<p>✅ Perfil creado correctamente</p>
+<button class="primary" id="salirPerfil">🚪 CERRAR PERFIL</button>
+</div>
+<button class="back" id="volver">⬅️ VOLVER AL MENÚ</button>
+</div>
+<script>
+const nombre=document.getElementById('nombre');
+const contrasena=document.getElementById('contrasena');
+const error=document.getElementById('error');
+const login=document.getElementById('login');
+const perfil=document.getElementById('perfil');
+const nombrePerfil=document.getElementById('nombrePerfil');
+function mostrarPerfil(){const p=JSON.parse(localStorage.getItem('soyPerritoPerfil')||'null');if(p){login.style.display='none';perfil.style.display='block';nombrePerfil.textContent=p.nombre}}
+mostrarPerfil();
+document.getElementById('crear').onclick=()=>{const n=nombre.value.trim(),c=contrasena.value;if(!n||!c){error.textContent='⚠️ Escribe un nombre y una contraseña.';return}localStorage.setItem('soyPerritoPerfil',JSON.stringify({nombre:n,contrasena:c}));mostrarPerfil()};
+document.getElementById('salirPerfil').onclick=()=>{localStorage.removeItem('soyPerritoPerfil');location.reload()};
+document.getElementById('volver').onclick=()=>{location.href='https://soyperritoyt.github.io/SoyPerritoProProYT-Console/'};
+</script>
+</body>
+</html>
